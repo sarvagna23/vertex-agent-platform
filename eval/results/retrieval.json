@@ -2,11 +2,11 @@
   "summary": {
     "queries": 30,
     "top_k": 5,
-    "hit_at_1": 0.8,
+    "hit_at_1": 0.867,
     "hit_at_5": 0.967,
-    "mrr": 0.878,
-    "retrieval_latency_ms_p50": 1783,
-    "retrieval_latency_ms_p95": 5458
+    "mrr": 0.917,
+    "retrieval_latency_ms_p50": 5065,
+    "retrieval_latency_ms_p95": 8847
   },
   "per_query": [
     {
@@ -27,7 +27,7 @@
     },
     {
       "query": "A payment was reported late even though I paid on time",
-      "first_hit_rank": 3
+      "first_hit_rank": 1
     },
     {
       "query": "I am an identity theft victim and the bureau will not block the fraudulent items",
@@ -99,11 +99,11 @@
     },
     {
       "query": "My credit card account was closed with no reason given and my balance was called due",
-      "first_hit_rank": 2
+      "first_hit_rank": 1
     },
     {
       "query": "My student loan servicer applied my payments incorrectly",
-      "first_hit_rank": 2
+      "first_hit_rank": 1
     },
     {
       "query": "The servicer never processed my forbearance request and my loan went delinquent",
@@ -115,7 +115,7 @@
     },
     {
       "query": "My car was repossessed even though I was making payments",
-      "first_hit_rank": 1
+      "first_hit_rank": 2
     },
     {
       "query": "I cannot get a refund of the unused GAP insurance after paying off my auto loan",
