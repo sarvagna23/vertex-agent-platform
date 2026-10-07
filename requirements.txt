@@ -1,0 +1,8 @@
+# Core runtime (this is what the Cloud Run image installs).
+# Versions are left open on purpose. After your first clean run, run `pip freeze` and pin them.
+google-adk
+google-cloud-bigquery
+mcp
+fastapi
+uvicorn[standard]
+python-dotenv

@@ -1,0 +1,30 @@
+{"query": "The credit bureau is reporting an account on my report that I never opened", "expected_products": ["credit reporting"]}
+{"query": "Someone opened accounts in my name and they show up on my credit file", "expected_products": ["credit reporting"]}
+{"query": "I disputed errors with the credit reporting agency and they never investigated", "expected_products": ["credit reporting"]}
+{"query": "A hard inquiry appeared on my credit report that I did not authorize", "expected_products": ["credit reporting"]}
+{"query": "A payment was reported late even though I paid on time", "expected_products": ["credit reporting"]}
+{"query": "I am an identity theft victim and the bureau will not block the fraudulent items", "expected_products": ["credit reporting"]}
+{"query": "A debt collector keeps calling me about a debt I already paid off", "expected_products": ["debt collection"]}
+{"query": "The collection agency threatened to sue me and take my wages", "expected_products": ["debt collection"]}
+{"query": "A collector contacted my employer about my debt", "expected_products": ["debt collection"]}
+{"query": "I do not recognize this debt and the collector will not send validation", "expected_products": ["debt collection"]}
+{"query": "Collector keeps calling my family members and refuses to stop", "expected_products": ["debt collection"]}
+{"query": "My mortgage servicer lost my payment and charged me late fees", "expected_products": ["mortgage"]}
+{"query": "My escrow account shortage made my monthly mortgage payment jump", "expected_products": ["mortgage"]}
+{"query": "I was denied a loan modification on my home loan without a clear reason", "expected_products": ["mortgage"]}
+{"query": "Foreclosure proceeded while my modification application was still pending", "expected_products": ["mortgage"]}
+{"query": "The bank froze my checking account without any notice", "expected_products": ["checking or savings", "bank account"]}
+{"query": "There was an unauthorized withdrawal from my savings account", "expected_products": ["checking or savings", "bank account"]}
+{"query": "I was charged multiple overdraft fees in one day on my checking account", "expected_products": ["checking or savings", "bank account"]}
+{"query": "My deposited check is on hold and the funds are not available", "expected_products": ["checking or savings", "bank account"]}
+{"query": "There is a fraudulent charge on my credit card that the issuer will not remove", "expected_products": ["credit card", "prepaid card"]}
+{"query": "My credit card billing dispute was closed without a real investigation", "expected_products": ["credit card", "prepaid card"]}
+{"query": "The card company raised my interest rate without warning", "expected_products": ["credit card", "prepaid card"]}
+{"query": "My credit card account was closed with no reason given and my balance was called due", "expected_products": ["credit card", "prepaid card"]}
+{"query": "My student loan servicer applied my payments incorrectly", "expected_products": ["student loan"]}
+{"query": "The servicer never processed my forbearance request and my loan went delinquent", "expected_products": ["student loan"]}
+{"query": "I cannot get my student loan into an income driven repayment plan", "expected_products": ["student loan"]}
+{"query": "My car was repossessed even though I was making payments", "expected_products": ["vehicle loan", "consumer loan"]}
+{"query": "I cannot get a refund of the unused GAP insurance after paying off my auto loan", "expected_products": ["vehicle loan", "consumer loan"]}
+{"query": "I sent money through an app to a scammer and the company will not help", "expected_products": ["money transfer", "virtual currency"]}
+{"query": "My payment app locked my account and my money is stuck", "expected_products": ["money transfer", "virtual currency"]}

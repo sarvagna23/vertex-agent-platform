@@ -1,0 +1,133 @@
+{
+  "summary": {
+    "queries": 30,
+    "top_k": 5,
+    "hit_at_1": 0.8,
+    "hit_at_5": 0.967,
+    "mrr": 0.878,
+    "retrieval_latency_ms_p50": 1783,
+    "retrieval_latency_ms_p95": 5458
+  },
+  "per_query": [
+    {
+      "query": "The credit bureau is reporting an account on my report that I never opened",
+      "first_hit_rank": 2
+    },
+    {
+      "query": "Someone opened accounts in my name and they show up on my credit file",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "I disputed errors with the credit reporting agency and they never investigated",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "A hard inquiry appeared on my credit report that I did not authorize",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "A payment was reported late even though I paid on time",
+      "first_hit_rank": 3
+    },
+    {
+      "query": "I am an identity theft victim and the bureau will not block the fraudulent items",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "A debt collector keeps calling me about a debt I already paid off",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "The collection agency threatened to sue me and take my wages",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "A collector contacted my employer about my debt",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "I do not recognize this debt and the collector will not send validation",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "Collector keeps calling my family members and refuses to stop",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "My mortgage servicer lost my payment and charged me late fees",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "My escrow account shortage made my monthly mortgage payment jump",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "I was denied a loan modification on my home loan without a clear reason",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "Foreclosure proceeded while my modification application was still pending",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "The bank froze my checking account without any notice",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "There was an unauthorized withdrawal from my savings account",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "I was charged multiple overdraft fees in one day on my checking account",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "My deposited check is on hold and the funds are not available",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "There is a fraudulent charge on my credit card that the issuer will not remove",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "My credit card billing dispute was closed without a real investigation",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "The card company raised my interest rate without warning",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "My credit card account was closed with no reason given and my balance was called due",
+      "first_hit_rank": 2
+    },
+    {
+      "query": "My student loan servicer applied my payments incorrectly",
+      "first_hit_rank": 2
+    },
+    {
+      "query": "The servicer never processed my forbearance request and my loan went delinquent",
+      "first_hit_rank": null
+    },
+    {
+      "query": "I cannot get my student loan into an income driven repayment plan",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "My car was repossessed even though I was making payments",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "I cannot get a refund of the unused GAP insurance after paying off my auto loan",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "I sent money through an app to a scammer and the company will not help",
+      "first_hit_rank": 1
+    },
+    {
+      "query": "My payment app locked my account and my money is stuck",
+      "first_hit_rank": 2
+    }
+  ]
+}

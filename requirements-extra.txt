@@ -1,0 +1,7 @@
+# Dev, evaluation and pipeline extras (not installed in the Cloud Run image).
+pytest
+httpx
+pandas
+google-cloud-aiplatform[evaluation]
+google-cloud-dlp
+kfp
