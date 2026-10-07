@@ -79,17 +79,20 @@ Cloud Run runs the API with a dedicated service account that can run queries, re
 
 ## Results
 
-Fill this in from `eval/results/` after you run the evals. Do not publish numbers you did not measure.
+Measured on 50,000 CFPB complaints with narratives, using the scripts in `eval/`. Raw output is in `eval/results/`.
 
 | Metric | Value | Notes |
 |---|---|---|
-| Rows embedded | TBD | |
-| Retrieval hit@1 / hit@5 | TBD | 30 labeled queries, product match, brute force or index (say which) |
-| MRR | TBD | |
-| Judge groundedness (mean) | TBD | Vertex AI evaluation, n = TBD |
-| PII leak rate in answers | TBD | |
-| End to end latency p50 / p95 | TBD | n = TBD requests |
-
+| Rows embedded | 50,000 | text-embedding-005 through a BigQuery remote model |
+| Retrieval hit@1 | 0.867 | 30 labeled queries, product-level match |
+| Retrieval hit@5 | 0.967 | 29 of 30 queries |
+| MRR | 0.917 | |
+| Retrieval latency p50 / p95 | 5.1 s / 8.8 s | brute force search (the vector index showed 0% coverage during the run) |
+| Judge groundedness | 0.73 | Vertex AI evaluation service, 15 questions, one run |
+| Judge answer quality | 3.67 / 5 | same run |
+| Judge fluency | 5.0 / 5 | same run |
+| PII leak rate in answers | 0 of 15 | redactor run over every answer |
+| End to end latency p50 / p95 | TBD | measured after the Cloud Run deploy |
 ## Design notes and limits
 
 - **Read-only SQL is layered.** The server rejects anything but a single SELECT or WITH, caps rows, and caps bytes billed per query. The real boundary is IAM: the service account only has dataset read access.
@@ -97,7 +100,9 @@ Fill this in from `eval/results/` after you run the evals. Do not publish number
 - **The vector index is approximate.** Until it finishes building, queries use brute force. State which one produced your numbers.
 - **PII:** CFPB narratives are already masked at the source. The redactor protects against what users type. Regex names are intentionally narrow; turn on `USE_DLP=true` for broader detection.
 - **In memory sessions.** Each request uses a fresh ADK session, so there is no conversation memory between calls.
-
+- **Counts reflect the subset.** SQL answers count complaints in the 50,000 row sample, not all of CFPB.
+- **Known retrieval miss.** One query (student loan forbearance leading to delinquency) did not return the expected product in the top 5. Its wording overlaps with credit reporting complaints.
+- **Known groundedness gaps.** The judge flagged 4 of 15 answers for inferences beyond the retrieved evidence. Two runs gave 0.87 and 0.73, so treat groundedness as approximate at n = 15.
 ## Troubleshooting
 
 - Column not found in step 1: check the public schema with `bq show --schema --format=prettyjson bigquery-public-data:cfpb_complaints.complaint_database` and adjust `data/01_create_subset.sql`.
