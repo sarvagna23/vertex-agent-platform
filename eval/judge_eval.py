@@ -57,20 +57,38 @@ def main() -> None:
     leaks = [bool(redact_pii(text).found_pii) for text in dataset["response"]]
     pii_leak_rate = sum(leaks) / len(leaks)
 
-    # Judge model scoring.
+        # Judge model scoring. The groundedness judge grades against the prompt text only,
+    # so for that metric the evidence goes INSIDE the prompt. The other metrics keep the plain question.
     vertexai.init(project=config.PROJECT_ID, location=config.LOCATION)
-    metrics = [
-        MetricPromptTemplateExamples.Pointwise.GROUNDEDNESS,
-        MetricPromptTemplateExamples.Pointwise.QUESTION_ANSWERING_QUALITY,
-        MetricPromptTemplateExamples.Pointwise.FLUENCY,
-    ]
-    eval_result = EvalTask(dataset=dataset, metrics=metrics).evaluate()
+
+    grounded_dataset = dataset.copy()
+    grounded_dataset["prompt"] = "Evidence:\n" + dataset["context"] + "\n\nQuestion: " + dataset["prompt"]
+    grounded_result = EvalTask(
+        dataset=grounded_dataset,
+        metrics=[MetricPromptTemplateExamples.Pointwise.GROUNDEDNESS],
+    ).evaluate()
+
+    quality_result = EvalTask(
+        dataset=dataset,
+        metrics=[
+            MetricPromptTemplateExamples.Pointwise.QUESTION_ANSWERING_QUALITY,
+            MetricPromptTemplateExamples.Pointwise.FLUENCY,
+        ],
+    ).evaluate()
+
+    # Keep the judge's reasoning per row, so any low score can be inspected later.
+    grounded_result.metrics_table.to_csv(EVAL_DIR / "results" / "judge_groundedness.csv", index=False)
+
+    judge_metrics = {}
+    for result in (grounded_result, quality_result):
+        for key, value in result.summary_metrics.items():
+            if isinstance(value, (int, float)) and key != "row_count":
+                judge_metrics[key] = round(float(value), 3)
 
     summary = {
         "questions": len(dataset),
         "pii_leak_rate": round(pii_leak_rate, 3),
-        "judge_summary_metrics": {key: round(float(value), 3) for key, value in eval_result.summary_metrics.items()
-                                  if isinstance(value, (int, float))},
+        "judge_summary_metrics": judge_metrics,
     }
     RESULTS_FILE.parent.mkdir(parents=True, exist_ok=True)
     RESULTS_FILE.write_text(json.dumps({"summary": summary, "rows": rows}, indent=2))

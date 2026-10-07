@@ -1,0 +1,777 @@
+prompt,response,context,groundedness/explanation,groundedness/score
+"Evidence:
+3129148 | Debt collection | Attempts to collect debt not owed | I have no knowledge of this account or who it belongs to.
+4503409 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | There is one account on my credit report that does not belong to me it is not mine I have not signed or used this account!!!
+5022888 | Debt collection | Attempts to collect debt not owed | I was unaware of this account until it showed up on my credit report.
+3752412 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have no knowledge of the following account that I see on my credit report : XXXX XXXX XXXX account XXXX Please investigate and delete asap.
+3221376 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | This was an account that was not opened by me and should not be on my credit report.
+6058862 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | There are accounts that are being reported illegally in my credit report.
+3517021 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | There are multiple accounts on my credit report that I have not opened and have not authorized the inquiry.
+3745791 | Debt collection | Attempts to collect debt not owed | I noticed a new account added to my credit report that I have no knowledge about.
+
+No quantitative analysis needed.
+
+Question: The credit bureau is reporting an account on my report that I never opened","We understand you are seeing an account on your credit report that you did not open. This is a common concern.
+
+Other consumers have reported similar issues, such as an account appearing on their credit report that they did not open or authorize (Complaint IDs 4503409, 3221376, 3517021). Some discovered these accounts when they showed up on their credit report and had no prior knowledge of them (Complaint IDs 5022888, 3745791). These complaints are often categorized as ""Incorrect information on your report"" or ""Improper use of your report.""","3129148 | Debt collection | Attempts to collect debt not owed | I have no knowledge of this account or who it belongs to.
+4503409 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | There is one account on my credit report that does not belong to me it is not mine I have not signed or used this account!!!
+5022888 | Debt collection | Attempts to collect debt not owed | I was unaware of this account until it showed up on my credit report.
+3752412 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have no knowledge of the following account that I see on my credit report : XXXX XXXX XXXX account XXXX Please investigate and delete asap.
+3221376 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | This was an account that was not opened by me and should not be on my credit report.
+6058862 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | There are accounts that are being reported illegally in my credit report.
+3517021 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | There are multiple accounts on my credit report that I have not opened and have not authorized the inquiry.
+3745791 | Debt collection | Attempts to collect debt not owed | I noticed a new account added to my credit report that I have no knowledge about.
+
+No quantitative analysis needed.","All information presented in the response is directly supported by or can be logically inferred from the provided evidence and the user's question. The complaint IDs and categories referenced are accurate, and the opening statement rephrases the user's question, while the 'common concern' inference is reasonable given the multiple similar examples provided in the evidence.",1.0
+"Evidence:
+3567700 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I am a victim of identity theft, these accounts I had nothing to do with that are showing incorrectly on my credit report
+5369853 | Checking or savings account | Opening an account | I recently noticed I have been a victim of identity theft. There are some accounts that were opened in my name that I did not open.
+5620437 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I recently received my credit report and noticed these fraudulent accounts that are not mine and that I did not sign up for.
+3260743 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | ON MY CREDIT REPORT THERE ARE FEW FRAUDULENT ACCOUNTS ON MY CREDIT REPORT. THESE ACCOUNTS DON'T BELONG TO ME. THESE ACCOUNTS WERE OPENED WITHOUT MY CONSENT.
+3256025 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | Accounts have been added to my credit report I believe to be a result of fraud. These accounts are unauthorized and unverified.
+4652364 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have had someone to use my personal information to attempt to open accounts in my name without my knowledge.
+4579080 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have had someone to use my personal information to attempt to open accounts in my name without my knowledge.
+3839567 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | Fraudulent accounts were opened using my identity. These accounts are having an adverse effect on my credit files. XXXX, Equifax, and XXXX are reporting accounts that are not mine and are allowing these collection agencies report false information.
+
+The following are the top complaints related to fraudulent accounts showing up on credit files:
+
+SQL query:
+```sql
+SELECT
+    product,
+    issue,
+    COUNT(complaint_id) AS number_of_complaints
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    (product LIKE '%Credit reporting%' OR product LIKE '%Checking or savings account%') AND
+    (issue LIKE '%Incorrect information on your report%' OR issue LIKE '%Opening an account%' OR issue LIKE '%Problem with a credit reporting company%') AND
+    (LOWER(narrative) LIKE '%identity theft%' OR LOWER(narrative) LIKE '%fraudulent accounts%' OR LOWER(narrative) LIKE '%accounts not mine%' OR LOWER(narrative) LIKE '%opened in my name%')
+  GROUP BY
+    product, issue
+  ORDER BY
+    number_of_complaints DESC
+  LIMIT 10;
+```
+Summary:
+There are 2495 complaints regarding ""Credit reporting, credit repair services, or other personal consumer reports"" with the issue of ""Incorrect information on your report"".
+There are 478 complaints regarding ""Credit reporting, credit repair services, or other personal consumer reports"" with the issue of ""Problem with a credit reporting company's investigation into an existing problem"".
+There are 22 complaints regarding ""Checking or savings account"" with the issue of ""Opening an account"".
+There is 1 complaint regarding ""Checking or savings account"" with the issue of ""Problem with a credit reporting company's investigation into an existing problem"".
+There is 1 complaint regarding ""Checking or savings account"" with the issue of ""Incorrect information on your report"".
+
+Question: Someone opened accounts in my name and they show up on my credit file","We understand you're concerned about accounts opened in your name appearing on your credit file. This is a common issue, often related to identity theft.
+
+Similar complaints include:
+*   ""accounts I had nothing to do with that are showing incorrectly on my credit report"" (Complaint ID 3567700).
+*   ""fraudulent accounts that are not mine and that I did not sign up for"" (Complaint ID 5620437).
+*   ""FRAUDULENT ACCOUNTS ON MY CREDIT REPORT. THESE ACCOUNTS DON'T BELONG TO ME. THESE ACCOUNTS WERE OPENED WITHOUT MY CONSENT"" (Complaint ID 3260743).
+
+According to our SQL analysis, there are 2495 complaints under ""Credit reporting, credit repair services, or other personal consumer reports"" regarding ""Incorrect information on your report"" related to fraudulent accounts or identity theft. Additionally, 478 complaints concern ""Problem with a credit reporting company's investigation into an existing problem"" for similar reasons. We also see 22 complaints for ""Checking or savings account"" with the issue of ""Opening an account"" due to identity theft.","3567700 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I am a victim of identity theft, these accounts I had nothing to do with that are showing incorrectly on my credit report
+5369853 | Checking or savings account | Opening an account | I recently noticed I have been a victim of identity theft. There are some accounts that were opened in my name that I did not open.
+5620437 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I recently received my credit report and noticed these fraudulent accounts that are not mine and that I did not sign up for.
+3260743 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | ON MY CREDIT REPORT THERE ARE FEW FRAUDULENT ACCOUNTS ON MY CREDIT REPORT. THESE ACCOUNTS DON'T BELONG TO ME. THESE ACCOUNTS WERE OPENED WITHOUT MY CONSENT.
+3256025 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | Accounts have been added to my credit report I believe to be a result of fraud. These accounts are unauthorized and unverified.
+4652364 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have had someone to use my personal information to attempt to open accounts in my name without my knowledge.
+4579080 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have had someone to use my personal information to attempt to open accounts in my name without my knowledge.
+3839567 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | Fraudulent accounts were opened using my identity. These accounts are having an adverse effect on my credit files. XXXX, Equifax, and XXXX are reporting accounts that are not mine and are allowing these collection agencies report false information.
+
+The following are the top complaints related to fraudulent accounts showing up on credit files:
+
+SQL query:
+```sql
+SELECT
+    product,
+    issue,
+    COUNT(complaint_id) AS number_of_complaints
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    (product LIKE '%Credit reporting%' OR product LIKE '%Checking or savings account%') AND
+    (issue LIKE '%Incorrect information on your report%' OR issue LIKE '%Opening an account%' OR issue LIKE '%Problem with a credit reporting company%') AND
+    (LOWER(narrative) LIKE '%identity theft%' OR LOWER(narrative) LIKE '%fraudulent accounts%' OR LOWER(narrative) LIKE '%accounts not mine%' OR LOWER(narrative) LIKE '%opened in my name%')
+  GROUP BY
+    product, issue
+  ORDER BY
+    number_of_complaints DESC
+  LIMIT 10;
+```
+Summary:
+There are 2495 complaints regarding ""Credit reporting, credit repair services, or other personal consumer reports"" with the issue of ""Incorrect information on your report"".
+There are 478 complaints regarding ""Credit reporting, credit repair services, or other personal consumer reports"" with the issue of ""Problem with a credit reporting company's investigation into an existing problem"".
+There are 22 complaints regarding ""Checking or savings account"" with the issue of ""Opening an account"".
+There is 1 complaint regarding ""Checking or savings account"" with the issue of ""Problem with a credit reporting company's investigation into an existing problem"".
+There is 1 complaint regarding ""Checking or savings account"" with the issue of ""Incorrect information on your report"".","All information in the response is directly attributable to the user prompt, including direct quotes from complaint narratives, complaint IDs, and aggregated complaint numbers from the summary section. The statement 'This is a common issue' is a reasonable inference based on the high number of complaints detailed in the provided summary.",1.0
+"Evidence:
+5729835 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have sent disputes to the credit reporting agency and never got a response, However by law you're required to response within 30 days. Please investigate my disputes
+3804229 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | For months I have been disputing multiple errors on my credit report and not only the creditors but also the credit bureaus have failed to delete, or even correct, the accounts in question.
+3752917 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regards to the incorrect items on my credit report. It's been well over 30 days and I haven't received any investigation results.
+5434788 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regards to the incorrect items on my credit report. It's been well over 30 days and I haven't received any investigation results.
+3898271 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I tried to resolve all the problems in my credit report with the bureaus but they don't want to investigate about my case.
+4536477 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regard to the incorrect items on my credit report it has well over 30 days and I received any investigation results.
+5195769 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regards to the incorrect items on my credit report. It has been well over 30 days and I have not received any investigation results.
+4493454 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regards to the incorrect items on my credit report. It has been well over 30 days and I have not received any investigation results.
+
+
+No quantitative analysis needed.
+
+Question: I disputed errors with the credit reporting agency and they never investigated","Many consumers have reported issues where they disputed errors with credit reporting agencies but did not receive an investigation or a response, often exceeding the legally required 30-day timeframe.
+
+Similar complaints include:
+*   Complaint 5729835 states that disputes were sent to a credit reporting agency, but no response was received, despite a legal requirement to respond within 30 days.
+*   Complaints 3752917, 5434788, 4536477, 5195769, and 4493454 describe filing disputes for incorrect items on credit reports and not receiving investigation results even after more than 30 days.
+*   Complaint 3898271 notes that credit bureaus were unwilling to investigate the reported problems.
+*   Complaint 3804229 indicates that both creditors and credit bureaus failed to delete or correct disputed accounts.","5729835 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have sent disputes to the credit reporting agency and never got a response, However by law you're required to response within 30 days. Please investigate my disputes
+3804229 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | For months I have been disputing multiple errors on my credit report and not only the creditors but also the credit bureaus have failed to delete, or even correct, the accounts in question.
+3752917 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regards to the incorrect items on my credit report. It's been well over 30 days and I haven't received any investigation results.
+5434788 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regards to the incorrect items on my credit report. It's been well over 30 days and I haven't received any investigation results.
+3898271 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I tried to resolve all the problems in my credit report with the bureaus but they don't want to investigate about my case.
+4536477 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regard to the incorrect items on my credit report it has well over 30 days and I received any investigation results.
+5195769 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regards to the incorrect items on my credit report. It has been well over 30 days and I have not received any investigation results.
+4493454 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I filed a dispute in regards to the incorrect items on my credit report. It has been well over 30 days and I have not received any investigation results.
+
+
+No quantitative analysis needed.","All aspects of the response, including the introductory summary and the specific complaint references, are directly attributable to the context provided in the user prompt. No outside information is introduced.",1.0
+"Evidence:
+3139724 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | I had a hard inquiry on my credit report on XX/XX/2019 that i did not authorize company to look into my credit, I did not apply for any type of credit.
+4433020 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | On XX/XX/2021 an hard inquiry was shown on my credit report I have not given anyone permission to run my credit
+2719724 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | There are inquires that I do not recognize on my credit reports.
+4384037 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I just checked my credit report and it shows multiple hard inquiries that i did not authorize and i am asking for it to be removed from my report.
+2713596 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | There is an XXXX hard inquiry on my credit report dated XXXX XXXX.
+2808609 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | Hey I haven't authorized these hard inquiries on my credit report please help me remove them as they are affecting me.
+3350255 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | I have a hard inquiry from a company I dont recognize on my credit report and it is affecting my score negatively.
+2541586 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | I recently received a copy of my credit report and it shows an inquiry by this company that I do not recall authorizing.
+
+No quantitative analysis needed.
+
+Question: A hard inquiry appeared on my credit report that I did not authorize","You are reporting an unauthorized hard inquiry on your credit report. This is a common concern among consumers.
+
+Similar complaints describe situations where:
+*   Individuals found hard inquiries on their credit reports that they did not authorize or apply for (3139724, 4384037).
+*   Consumers stated they had not given anyone permission to run their credit (4433020).
+*   There were inquiries that consumers did not recognize or recall authorizing (2719724, 2713596, 3350255, 2541586).
+*   Some noted these unauthorized inquiries were negatively affecting their credit score and sought their removal (2808609, 3350255).","3139724 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | I had a hard inquiry on my credit report on XX/XX/2019 that i did not authorize company to look into my credit, I did not apply for any type of credit.
+4433020 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | On XX/XX/2021 an hard inquiry was shown on my credit report I have not given anyone permission to run my credit
+2719724 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | There are inquires that I do not recognize on my credit reports.
+4384037 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I just checked my credit report and it shows multiple hard inquiries that i did not authorize and i am asking for it to be removed from my report.
+2713596 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | There is an XXXX hard inquiry on my credit report dated XXXX XXXX.
+2808609 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | Hey I haven't authorized these hard inquiries on my credit report please help me remove them as they are affecting me.
+3350255 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | I have a hard inquiry from a company I dont recognize on my credit report and it is affecting my score negatively.
+2541586 | Credit reporting, credit repair services, or other personal consumer reports | Improper use of your report | I recently received a copy of my credit report and it shows an inquiry by this company that I do not recall authorizing.
+
+No quantitative analysis needed.","The response includes information not present in the prompt, specifically the statement 'This is a common concern among consumers.' Additionally, the description for reference 2713596 states 'inquiries that consumers did not recognize or recall authorizing,' but the provided evidence for 2713596 ('There is an XXXX hard inquiry on my credit report dated XXXX XXXX') does not explicitly state the inquiry was unrecognized or unauthorized, unlike other examples provided.",0.0
+"Evidence:
+5292913 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | The account was paid as I agreed. When the account was paid off, the company reported the account late.
+2242051 | Credit card | Billing disputes | I was shocked when I reviewed my credit report and found late payment on my account.
+4654691 | Credit card or prepaid card | Problem when making payments | This account is reporting late as reported in my 3 Credit Bureaus. I do not believe I was late on the dates you are reporting. Please report the payment status positive and update all late from reporting on this account.
+3715395 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | XXXX/XXXX is reporting an erroneous late on my credit file for XX/XX/2020. I made this payment on time, and I should not be reporting any lates.
+3399395 | Credit card or prepaid card | Problem when making payments | I was shocked when reviewing my credit report and found a late payment on the date below : 30 days late as of XX/XX/2018 ( XXXX and XXXX ) I am not sure how this happened.
+3654680 | Credit card or prepaid card | Problem with a credit reporting company's investigation into an existing problem | I was shocked when I reviewed my credit report and found late payment on my credit report I am not sure how this happened, I believe that I had made my payments to you when I received my statements.
+5677827 | Credit card or prepaid card | Problem when making payments | I was shocked when reviewing my credit report and found a 30 day late payment reported for XXXX of 2019. I am not sure how this happened.
+3118705 | Credit card or prepaid card | Problem when making payments | I was shocked when reviewing my credit report and found a late payment on the date below : 30 days late as of XX/XX/2018 ( all 3 bureaus ) I am not sure how this happened.
+
+
+SQL query:
+```sql
+SELECT
+    product,
+    COUNT(complaint_id) AS num_complaints
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    (LOWER(issue) LIKE '%late payment%' OR LOWER(narrative) LIKE '%late payment%')
+    AND
+    (LOWER(issue) LIKE '%on time%' OR LOWER(narrative) LIKE '%on time%' OR LOWER(issue) LIKE '%paid on time%' OR LOWER(narrative) LIKE '%paid on time%')
+  GROUP BY
+    product
+  ORDER BY
+    num_complaints DESC
+  LIMIT 10
+```
+The top 10 products with complaints about payments being reported late despite being paid on time are:
+*   Credit reporting, credit repair services, or other personal consumer reports: 223 complaints
+*   Credit card or prepaid card: 38 complaints
+*   Mortgage: 37 complaints
+*   Debt collection: 14 complaints
+*   Vehicle loan or lease: 14 complaints
+*   Credit card: 10 complaints
+*   Student loan: 7 complaints
+*   Payday loan, title loan, or personal loan: 4 complaints
+*   Credit reporting: 4 complaints
+*   Consumer Loan: 4 complaints
+
+Question: A payment was reported late even though I paid on time","Consumers have reported instances where payments were marked late on their credit reports even when they believe they paid on time. For example, similar complaints mention situations where an account was paid off but then reported late (Complaint ID: 5292913), or where consumers were shocked to find late payments on their credit reports and believed they had made payments when statements were received (Complaint IDs: 2242051, 3399395, 3654680, 5677827, 3118705). Some explicitly state they made the payment on time and should not be reporting any lates (Complaint IDs: 4654691, 3715395).
+
+According to the SQL analysis, the top product experiencing these types of complaints is ""Credit reporting, credit repair services, or other personal consumer reports"" with 223 complaints. ""Credit card or prepaid card"" is next with 38 complaints, followed by ""Mortgage"" with 37 complaints. (SQL result)","5292913 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | The account was paid as I agreed. When the account was paid off, the company reported the account late.
+2242051 | Credit card | Billing disputes | I was shocked when I reviewed my credit report and found late payment on my account.
+4654691 | Credit card or prepaid card | Problem when making payments | This account is reporting late as reported in my 3 Credit Bureaus. I do not believe I was late on the dates you are reporting. Please report the payment status positive and update all late from reporting on this account.
+3715395 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | XXXX/XXXX is reporting an erroneous late on my credit file for XX/XX/2020. I made this payment on time, and I should not be reporting any lates.
+3399395 | Credit card or prepaid card | Problem when making payments | I was shocked when reviewing my credit report and found a late payment on the date below : 30 days late as of XX/XX/2018 ( XXXX and XXXX ) I am not sure how this happened.
+3654680 | Credit card or prepaid card | Problem with a credit reporting company's investigation into an existing problem | I was shocked when I reviewed my credit report and found late payment on my credit report I am not sure how this happened, I believe that I had made my payments to you when I received my statements.
+5677827 | Credit card or prepaid card | Problem when making payments | I was shocked when reviewing my credit report and found a 30 day late payment reported for XXXX of 2019. I am not sure how this happened.
+3118705 | Credit card or prepaid card | Problem when making payments | I was shocked when reviewing my credit report and found a late payment on the date below : 30 days late as of XX/XX/2018 ( all 3 bureaus ) I am not sure how this happened.
+
+
+SQL query:
+```sql
+SELECT
+    product,
+    COUNT(complaint_id) AS num_complaints
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    (LOWER(issue) LIKE '%late payment%' OR LOWER(narrative) LIKE '%late payment%')
+    AND
+    (LOWER(issue) LIKE '%on time%' OR LOWER(narrative) LIKE '%on time%' OR LOWER(issue) LIKE '%paid on time%' OR LOWER(narrative) LIKE '%paid on time%')
+  GROUP BY
+    product
+  ORDER BY
+    num_complaints DESC
+  LIMIT 10
+```
+The top 10 products with complaints about payments being reported late despite being paid on time are:
+*   Credit reporting, credit repair services, or other personal consumer reports: 223 complaints
+*   Credit card or prepaid card: 38 complaints
+*   Mortgage: 37 complaints
+*   Debt collection: 14 complaints
+*   Vehicle loan or lease: 14 complaints
+*   Credit card: 10 complaints
+*   Student loan: 7 complaints
+*   Payday loan, title loan, or personal loan: 4 complaints
+*   Credit reporting: 4 complaints
+*   Consumer Loan: 4 complaints","All aspects of the response, including the examples from the complaint narratives and the summary of the SQL analysis, are directly attributable to the context provided in the user prompt.",1.0
+"Evidence:
+* 6074472 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I was a victim of identity theft. I filed a police report and theft affidavit. The bureaus have not removed and blocked the fraudulent information.
+* 3957841 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I recently filed a complaint informing that I am a victim of Identity Theft. The credit bureau failed to block and remove ALL the items included in my last letter.
+* 1726217 | Credit reporting | Incorrect information on credit report | Equifax refuses to block items on my report due to my Identity theft. I have sent the appropriate documentation and requested that they remove the items from my report.
+* 3792903 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I am a victim of identity theft and did not make the charge. I ask that the items be blocked to correct my credit report.
+* 3134948 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | My identity was stolen and used to open fraudulent accounts that are now appearing on my credit report. I have notified law enforcement and requested that the credit bureaus remove the fraudulent information which they have yet to do. I am a victim and need this information removed.
+* 5117921 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I'm the victim of identity theft. The credit bureaus have refused to correct my credit report even after I have sent supporting docs.
+* 2440585 | Credit reporting | Incorrect information on credit report | I have attempted numerous times to have the below items removed from my report regarding identity theft. The bureau keeps responding with stall tactics after I have sent my ID , Proof of address and police report.
+* 3782629 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | im a victim of identity theft there are several accounts on my credit report that ive disputed but the credit bureaus have not removed these accounts ive filed a report with the ftc and a police report as well
+
+No quantitative analysis needed.
+
+Question: I am an identity theft victim and the bureau will not block the fraudulent items","Consumers have reported that credit bureaus often do not block fraudulent items on their credit reports even after identity theft has occurred. Despite victims providing documentation such as police reports, theft affidavits, or other supporting documents, credit bureaus have been reported to fail in removing or blocking these fraudulent entries (6074472, 3957841, 1726217, 3134948, 5117921, 2440585, 3782629). Some consumers specifically mention requesting that items be blocked to correct their credit reports (3792903).","* 6074472 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I was a victim of identity theft. I filed a police report and theft affidavit. The bureaus have not removed and blocked the fraudulent information.
+* 3957841 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I recently filed a complaint informing that I am a victim of Identity Theft. The credit bureau failed to block and remove ALL the items included in my last letter.
+* 1726217 | Credit reporting | Incorrect information on credit report | Equifax refuses to block items on my report due to my Identity theft. I have sent the appropriate documentation and requested that they remove the items from my report.
+* 3792903 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I am a victim of identity theft and did not make the charge. I ask that the items be blocked to correct my credit report.
+* 3134948 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | My identity was stolen and used to open fraudulent accounts that are now appearing on my credit report. I have notified law enforcement and requested that the credit bureaus remove the fraudulent information which they have yet to do. I am a victim and need this information removed.
+* 5117921 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I'm the victim of identity theft. The credit bureaus have refused to correct my credit report even after I have sent supporting docs.
+* 2440585 | Credit reporting | Incorrect information on credit report | I have attempted numerous times to have the below items removed from my report regarding identity theft. The bureau keeps responding with stall tactics after I have sent my ID , Proof of address and police report.
+* 3782629 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | im a victim of identity theft there are several accounts on my credit report that ive disputed but the credit bureaus have not removed these accounts ive filed a report with the ftc and a police report as well
+
+No quantitative analysis needed.","All aspects of the response are directly attributable to the provided evidence in the user prompt. The response accurately summarizes the common themes and specific details from the given complaint examples, and the reference IDs are correctly used.",1.0
+"Evidence:
+1368380 | Debt collection | Communication tactics | This company keeps trying to collect on a debt that originated from another creditor that has settled the account and charged off and shows paid on my credit report with all XXXX credit bureaus.
+2677654 | Debt collection | Attempts to collect debt not owed | I paid XXXX XXXX off some time ago and people keep contacting me to pay it again this time it is a new debt collection agency.
+2420585 | Debt collection | Communication tactics | I responded to a letter they sent me regarding an indebtedness, With an explanation of my situation with also a payment towards the debt, In that letter I clearly stated to stop all phone calls.
+4562370 | Debt collection | Attempts to collect debt not owed | Collector keeps calling me after debt was paid.
+5065493 | Debt collection | Attempts to collect debt not owed | I continue to receive phone calls from debt collectors that I do not owe.
+5779410 | Debt collection | Communication tactics | I am getting repeated calls and voice messages from debt collectors.
+2482363 | Debt collection | Communication tactics | This stems from a mortgage debt that was foreclosed and settled/chared off seven years ago.
+6384054 | Debt collection | Attempts to collect debt not owed | This debt has been paid in full.
+
+No quantitative analysis needed.
+
+Question: A debt collector keeps calling me about a debt I already paid off","It appears to be a common issue for consumers to continue receiving calls from debt collectors for debts that have already been paid off or settled. Consumers report being contacted by new debt collection agencies even after an account was paid (2677654), or after the original creditor had settled and charged off the account (1368380). Some complaints state that collectors keep calling after the debt was paid (4562370) or paid in full (6384054). Others mention receiving repeated calls and voicemails from collectors about debts they do not owe (5065493, 5779410).","1368380 | Debt collection | Communication tactics | This company keeps trying to collect on a debt that originated from another creditor that has settled the account and charged off and shows paid on my credit report with all XXXX credit bureaus.
+2677654 | Debt collection | Attempts to collect debt not owed | I paid XXXX XXXX off some time ago and people keep contacting me to pay it again this time it is a new debt collection agency.
+2420585 | Debt collection | Communication tactics | I responded to a letter they sent me regarding an indebtedness, With an explanation of my situation with also a payment towards the debt, In that letter I clearly stated to stop all phone calls.
+4562370 | Debt collection | Attempts to collect debt not owed | Collector keeps calling me after debt was paid.
+5065493 | Debt collection | Attempts to collect debt not owed | I continue to receive phone calls from debt collectors that I do not owe.
+5779410 | Debt collection | Communication tactics | I am getting repeated calls and voice messages from debt collectors.
+2482363 | Debt collection | Communication tactics | This stems from a mortgage debt that was foreclosed and settled/chared off seven years ago.
+6384054 | Debt collection | Attempts to collect debt not owed | This debt has been paid in full.
+
+No quantitative analysis needed.","The response is fully grounded as all information presented is directly attributable to the provided evidence in the user prompt. The AI correctly references the specific evidence IDs for each point it makes, and the introductory statement about it being a 'common issue' is a reasonable synthesis given the multiple examples provided in the prompt.",1.0
+"Evidence:
+2939354 | Debt collection | Communication tactics | XX/XX/18 : was notified of a collection. when notified i was informed i would need to make payment right away or they would take legal action right away. when i notified i wasnt paying them the person on the phone became aggravated and wanted to use scare tactics like going to court and paying legal and lawyer fees then hung up the phone
+6282304 | Debt collection | Communication tactics | They send me a letter with a collection debt, I can not afford to pay that amount, and they keep calling me.
+4275304 | Debt collection | Written notification about debt | This organization garnished my wages. Once I received a notice that my wages were garnished without any prior notice of either the lawsuit or the judgement, I made several good faith attempts to reach out and negotiate and/or resolve the debt and they refused to answer my calls or respond to any of my attempts to negotiate. this was done in bad faith as the collector informed me on the single occasion that I was able to speak with a representative after finding out that my wages were garnished, that since my wages are already garnished they will probably not return my calls to negotiate. They
+2431414 | Consumer Loan | Problems when you are unable to pay | I am being called multiple times per day, from both the office and from personal cell phones of employees in the office. They are also sending text messages telling me to call them. I have advised them of medical issues I have that are currently preventing me from working, and I was advised that they were going to sue me in court, garnish my wages, and take personal property that was used as collateral.
+6292167 | Debt collection | Communication tactics | started screaming at me told me he'd see me and my husband in court. \n\ni said I had proof that i paid this bill through another collection agency and he screamed calling me an XXXX and calling me names and harrassing me I received garnishment papers to my then job at XXXX XXXX to where they talked to the owner claiming all debt was resolved XXXX XXXX XXXX
+2899553 | Debt collection | Attempts to collect debt not owed | In XX/XX/XXXX XXXX XXXX ( XXXX XXXX ) was calling me at my workplace at least twice a day. I sat up a payment plan since they threatened to garnish my wages. I paid {$170.00} for 3 months until I lost my job due to the company closing. I started a new job a month later and the first week on the job my brother unexpectedly passed away at the age of XXXX. My ex boss called to tell me he got a wage garnishment letter through mail. I called the collection agency and tried to set up payment plan. They wanted new payment to be {$190.00} per month which I really could not afford but they threatened m
+3246745 | Debt collection | Attempts to collect debt not owed | The current collection agency constantly sends me letters and doesn't own the debt and therefore has no authority to hound me with calls and letters on this debt. \n\nI don't owe them any money.
+1548509 | Debt collection | Taking/threatening an illegal action | I have been contacted several times by a collection agency claiming to be collo citing for a payday loan from several years past. I was threatened with wage garnishment, being sued and continued, more aggressive means of collection if I did not pay the debt right away. I naively mad XXXX apartment arrangement and provided by banking information. After, I felt unsure of my decision and consulted the alleged original creditor, of which there could have been XXXX possibilities, the \"" collection agency '' would not identify who it was. XXXX account had been placed with a collection agency, but not
+
+```sql
+SELECT
+  COUNT(complaint_id) AS num_complaints
+FROM
+  `vertex-agent-platform-510904.complaints.complaints_raw`
+WHERE
+  product = 'Debt collection' AND
+  (LOWER(narrative) LIKE '%sue%' OR
+   LOWER(narrative) LIKE '%garnishment%' OR
+   LOWER(narrative) LIKE '%wage garnishment%' OR
+   LOWER(narrative) LIKE '%legal action%' OR
+   LOWER(narrative) LIKE '%court%')
+LIMIT 100;
+```
+There are 1790 complaints where debt collection agencies threatened to sue or garnish wages.
+
+Question: The collection agency threatened to sue me and take my wages","There are 1790 complaints where debt collection agencies threatened to sue or garnish wages.
+
+For example:
+*   One consumer reported being told they needed to pay immediately or face ""legal action"" including going to court and paying legal fees (Complaint 2939354).
+*   Another consumer was advised they would be sued in court, have their wages garnished, and personal property taken (Complaint 2431414).
+*   A debt collector screamed at a consumer, threatening to see them in court and later garnishment papers were received (Complaint 6292167).
+*   Another complaint details being threatened with wage garnishment and being sued if the debt wasn't paid right away (Complaint 1548509).","2939354 | Debt collection | Communication tactics | XX/XX/18 : was notified of a collection. when notified i was informed i would need to make payment right away or they would take legal action right away. when i notified i wasnt paying them the person on the phone became aggravated and wanted to use scare tactics like going to court and paying legal and lawyer fees then hung up the phone
+6282304 | Debt collection | Communication tactics | They send me a letter with a collection debt, I can not afford to pay that amount, and they keep calling me.
+4275304 | Debt collection | Written notification about debt | This organization garnished my wages. Once I received a notice that my wages were garnished without any prior notice of either the lawsuit or the judgement, I made several good faith attempts to reach out and negotiate and/or resolve the debt and they refused to answer my calls or respond to any of my attempts to negotiate. this was done in bad faith as the collector informed me on the single occasion that I was able to speak with a representative after finding out that my wages were garnished, that since my wages are already garnished they will probably not return my calls to negotiate. They
+2431414 | Consumer Loan | Problems when you are unable to pay | I am being called multiple times per day, from both the office and from personal cell phones of employees in the office. They are also sending text messages telling me to call them. I have advised them of medical issues I have that are currently preventing me from working, and I was advised that they were going to sue me in court, garnish my wages, and take personal property that was used as collateral.
+6292167 | Debt collection | Communication tactics | started screaming at me told me he'd see me and my husband in court. \n\ni said I had proof that i paid this bill through another collection agency and he screamed calling me an XXXX and calling me names and harrassing me I received garnishment papers to my then job at XXXX XXXX to where they talked to the owner claiming all debt was resolved XXXX XXXX XXXX
+2899553 | Debt collection | Attempts to collect debt not owed | In XX/XX/XXXX XXXX XXXX ( XXXX XXXX ) was calling me at my workplace at least twice a day. I sat up a payment plan since they threatened to garnish my wages. I paid {$170.00} for 3 months until I lost my job due to the company closing. I started a new job a month later and the first week on the job my brother unexpectedly passed away at the age of XXXX. My ex boss called to tell me he got a wage garnishment letter through mail. I called the collection agency and tried to set up payment plan. They wanted new payment to be {$190.00} per month which I really could not afford but they threatened m
+3246745 | Debt collection | Attempts to collect debt not owed | The current collection agency constantly sends me letters and doesn't own the debt and therefore has no authority to hound me with calls and letters on this debt. \n\nI don't owe them any money.
+1548509 | Debt collection | Taking/threatening an illegal action | I have been contacted several times by a collection agency claiming to be collo citing for a payday loan from several years past. I was threatened with wage garnishment, being sued and continued, more aggressive means of collection if I did not pay the debt right away. I naively mad XXXX apartment arrangement and provided by banking information. After, I felt unsure of my decision and consulted the alleged original creditor, of which there could have been XXXX possibilities, the \"" collection agency '' would not identify who it was. XXXX account had been placed with a collection agency, but not
+
+```sql
+SELECT
+  COUNT(complaint_id) AS num_complaints
+FROM
+  `vertex-agent-platform-510904.complaints.complaints_raw`
+WHERE
+  product = 'Debt collection' AND
+  (LOWER(narrative) LIKE '%sue%' OR
+   LOWER(narrative) LIKE '%garnishment%' OR
+   LOWER(narrative) LIKE '%wage garnishment%' OR
+   LOWER(narrative) LIKE '%legal action%' OR
+   LOWER(narrative) LIKE '%court%')
+LIMIT 100;
+```
+There are 1790 complaints where debt collection agencies threatened to sue or garnish wages.","All aspects of the response, including the initial statement and the examples provided, are directly attributable to the context given in the user prompt (the number of complaints and the specific complaint narratives). No outside information was referenced.",1.0
+"Evidence:
+6106271 | Debt collection | Communication tactics | The company continues to contact my job to obtain information concerning my employment and collecting debt through my employer.
+1505287 | Debt collection | Taking/threatening an illegal action | Contacted my Manager XXXX at my work.
+1684646 | Debt collection | Improper contact or sharing of info | Now they have called my work without my permission.
+2241090 | Debt collection | Communication tactics | They are calling my place of employment and harassing me about a debt that I am disputing after I had asked them not to.
+1567525 | Debt collection | Communication tactics | Collection agency has called me at my place of employment three times and was told each time to stop calling me at work.
+1556506 | Debt collection | Improper contact or sharing of info | However, I am getting into trouble at work due to this company contacting my employer.
+4501098 | Debt collection | Threatened to contact someone or share information improperly | They kept calling my place of work and now my co-workers know a debt collector is trying to reach me.
+1569136 | Debt collection | Improper contact or sharing of info | Dynamic Recovery Solutions has called my employer multiple times, even after being told to not call again.
+
+```sql
+SELECT
+  company_name,
+  COUNT(DISTINCT complaint_id) AS complaint_count
+FROM
+  `vertex-agent-platform-510904.complaints.complaints_raw`
+WHERE
+  product = 'Debt collection'
+  AND (
+    LOWER(issue) LIKE '%contact%'
+    OR LOWER(issue) LIKE '%communication tactics%'
+    OR LOWER(issue) LIKE '%illegal action%'
+    OR LOWER(issue) LIKE '%sharing of info%'
+  )
+  AND (
+    LOWER(narrative) LIKE '%employer%'
+    OR LOWER(narrative) LIKE '%work%'
+    OR LOWER(narrative) LIKE '%job%'
+  )
+GROUP BY
+  company_name
+ORDER BY
+  complaint_count DESC
+LIMIT 10;
+```
+The top 10 companies with the most complaints about debt collectors contacting employers are: PORTFOLIO RECOVERY ASSOCIATES INC (17 complaints), SYNCHRONY FINANCIAL (12 complaints), ENCORE CAPITAL GROUP INC. (12 complaints), CAPITAL ONE FINANCIAL CORPORATION (10 complaints), Navient Solutions, LLC. (8 complaints), Bread Financial Holdings, Inc. (8 complaints), CITIBANK, N.A. (8 complaints), AMERICAN EXPRESS COMPANY (5 complaints), National Credit Adjusters, LLC (5 complaints), and TRANSWORLD SYSTEMS INC (5 complaints).
+
+Question: A collector contacted my employer about my debt","It appears that you are experiencing an issue where a debt collector contacted your employer about your debt. This is a common complaint.
+
+Other consumers have reported similar experiences, including debt collectors contacting their job to obtain employment information and collect debt (Complaint ID 6106271), contacting managers at work (Complaint ID 1505287), calling their workplace without permission (Complaint ID 1684646), and continuing to call after being asked to stop (Complaint IDs 2241090, 1567525, 1569136). Some consumers have reported getting into trouble at work because of these calls (Complaint ID 1556506) or their co-workers finding out about the debt (Complaint ID 4501098).
+
+According to an SQL analysis, the top 10 companies with the most complaints about debt collectors contacting employers are:
+*   PORTFOLIO RECOVERY ASSOCIATES INC (17 complaints)
+*   SYNCHRONY FINANCIAL (12 complaints)
+*   ENCORE CAPITAL GROUP INC. (12 complaints)
+*   CAPITAL ONE FINANCIAL CORPORATION (10 complaints)
+*   Navient Solutions, LLC. (8 complaints)
+*   Bread Financial Holdings, Inc. (8 complaints)
+*   CITIBANK, N.A. (8 complaints)
+*   AMERICAN EXPRESS COMPANY (5 complaints)
+*   National Credit Adjusters, LLC (5 complaints)
+*   TRANSWORLD SYSTEMS INC (5 complaints)","6106271 | Debt collection | Communication tactics | The company continues to contact my job to obtain information concerning my employment and collecting debt through my employer.
+1505287 | Debt collection | Taking/threatening an illegal action | Contacted my Manager XXXX at my work.
+1684646 | Debt collection | Improper contact or sharing of info | Now they have called my work without my permission.
+2241090 | Debt collection | Communication tactics | They are calling my place of employment and harassing me about a debt that I am disputing after I had asked them not to.
+1567525 | Debt collection | Communication tactics | Collection agency has called me at my place of employment three times and was told each time to stop calling me at work.
+1556506 | Debt collection | Improper contact or sharing of info | However, I am getting into trouble at work due to this company contacting my employer.
+4501098 | Debt collection | Threatened to contact someone or share information improperly | They kept calling my place of work and now my co-workers know a debt collector is trying to reach me.
+1569136 | Debt collection | Improper contact or sharing of info | Dynamic Recovery Solutions has called my employer multiple times, even after being told to not call again.
+
+```sql
+SELECT
+  company_name,
+  COUNT(DISTINCT complaint_id) AS complaint_count
+FROM
+  `vertex-agent-platform-510904.complaints.complaints_raw`
+WHERE
+  product = 'Debt collection'
+  AND (
+    LOWER(issue) LIKE '%contact%'
+    OR LOWER(issue) LIKE '%communication tactics%'
+    OR LOWER(issue) LIKE '%illegal action%'
+    OR LOWER(issue) LIKE '%sharing of info%'
+  )
+  AND (
+    LOWER(narrative) LIKE '%employer%'
+    OR LOWER(narrative) LIKE '%work%'
+    OR LOWER(narrative) LIKE '%job%'
+  )
+GROUP BY
+  company_name
+ORDER BY
+  complaint_count DESC
+LIMIT 10;
+```
+The top 10 companies with the most complaints about debt collectors contacting employers are: PORTFOLIO RECOVERY ASSOCIATES INC (17 complaints), SYNCHRONY FINANCIAL (12 complaints), ENCORE CAPITAL GROUP INC. (12 complaints), CAPITAL ONE FINANCIAL CORPORATION (10 complaints), Navient Solutions, LLC. (8 complaints), Bread Financial Holdings, Inc. (8 complaints), CITIBANK, N.A. (8 complaints), AMERICAN EXPRESS COMPANY (5 complaints), National Credit Adjusters, LLC (5 complaints), and TRANSWORLD SYSTEMS INC (5 complaints).","All information in the response is directly attributable to the provided user prompt, including the specific complaint examples and the list of top companies from the SQL analysis.",1.0
+"Evidence:
+2746719 | Debt collection | False statements or representation | Asked for Validation Letter not Verification. Never received validation that this debt belongs to me.
+2746718 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | Asked for Validation Letter not Verification. Never received validation that this debt belongs to me.
+4358145 | Debt collection | Written notification about debt | This collection appeared on my credit reports, I sent validation letters and never received validation, I have disputed it yet they say it's validated, I have no knowledge of this account and I am very dissatisfied that they have not validated it, nor do they seem to care that they are damaging my credit.
+2296320 | Debt collection | Disclosure verification of debt | Have not recieved valid verification that this is my debt. I disputed this 2 months ago. This is not my debt
+2910262 | Debt collection | Attempts to collect debt not owed | Debt was not validated by this debt collector and I have tried to send letters and emails without a response. Under FCRA laws they are required to orovide original documentation validating this debt is mine. If they are unable they must remove this supposed debt from all three of my credit reports.
+2415340 | Debt collection | Cont'd attempts collect debt not owed | I have asked for Validation of the debt through a certified letter to the company. I have yet to receive any kind of validation however I am receiving letters and phone calls concerning a debt that I do not owe.
+3918076 | Debt collection | Attempts to collect debt not owed | I have no knowledge of this debt. I have not received any notification of debt collection. I was not given an opportunity to dispute or receive validation of debt.
+3897705 | Debt collection | Written notification about debt | This company notified me of a debt owed that it has not validated and/or verified. I sent notice to this company & they have not responded.
+
+SQL used:
+```sql
+SELECT
+    issue,
+    COUNT(complaint_id) AS complaint_count
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    product = 'Debt collection' AND (
+      issue LIKE '%validation%' OR
+      issue LIKE '%verify%' OR
+      issue LIKE '%not owed%' OR
+      issue LIKE '%disclosure%' OR
+      issue LIKE '%false statements%' OR
+      issue LIKE '%incorrect information%'
+    )
+  GROUP BY
+    issue
+  ORDER BY
+    complaint_count DESC
+  LIMIT 10;
+```
+There are 3046 complaints where the issue is ""Attempts to collect debt not owed"" and 715 complaints where the issue is ""Cont'd attempts collect debt not owed"" related to debt collection.
+
+Question: I do not recognize this debt and the collector will not send validation","Many consumers report similar experiences with debt collectors not providing validation for debts they do not recognize.
+
+For example, other complaints describe situations where validation was requested but not received, despite continued collection attempts (Complaint IDs 2746719, 4358145, 2910262, 2415340). Some consumers also report having no knowledge of the debt or not receiving notification or opportunity to dispute it (Complaint ID 3918076).
+
+Our analysis shows 3046 complaints with the issue ""Attempts to collect debt not owed"" and 715 complaints with ""Cont'd attempts collect debt not owed"" concerning debt collection.","2746719 | Debt collection | False statements or representation | Asked for Validation Letter not Verification. Never received validation that this debt belongs to me.
+2746718 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | Asked for Validation Letter not Verification. Never received validation that this debt belongs to me.
+4358145 | Debt collection | Written notification about debt | This collection appeared on my credit reports, I sent validation letters and never received validation, I have disputed it yet they say it's validated, I have no knowledge of this account and I am very dissatisfied that they have not validated it, nor do they seem to care that they are damaging my credit.
+2296320 | Debt collection | Disclosure verification of debt | Have not recieved valid verification that this is my debt. I disputed this 2 months ago. This is not my debt
+2910262 | Debt collection | Attempts to collect debt not owed | Debt was not validated by this debt collector and I have tried to send letters and emails without a response. Under FCRA laws they are required to orovide original documentation validating this debt is mine. If they are unable they must remove this supposed debt from all three of my credit reports.
+2415340 | Debt collection | Cont'd attempts collect debt not owed | I have asked for Validation of the debt through a certified letter to the company. I have yet to receive any kind of validation however I am receiving letters and phone calls concerning a debt that I do not owe.
+3918076 | Debt collection | Attempts to collect debt not owed | I have no knowledge of this debt. I have not received any notification of debt collection. I was not given an opportunity to dispute or receive validation of debt.
+3897705 | Debt collection | Written notification about debt | This company notified me of a debt owed that it has not validated and/or verified. I sent notice to this company & they have not responded.
+
+SQL used:
+```sql
+SELECT
+    issue,
+    COUNT(complaint_id) AS complaint_count
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    product = 'Debt collection' AND (
+      issue LIKE '%validation%' OR
+      issue LIKE '%verify%' OR
+      issue LIKE '%not owed%' OR
+      issue LIKE '%disclosure%' OR
+      issue LIKE '%false statements%' OR
+      issue LIKE '%incorrect information%'
+    )
+  GROUP BY
+    issue
+  ORDER BY
+    complaint_count DESC
+  LIMIT 10;
+```
+There are 3046 complaints where the issue is ""Attempts to collect debt not owed"" and 715 complaints where the issue is ""Cont'd attempts collect debt not owed"" related to debt collection.","All information in the response, including the summary statement, specific complaint ID examples and their descriptions, and the complaint counts for specific issues, is directly and entirely derived from the provided user prompt's evidence and additional text.",1.0
+"Evidence:
+1478636 | Debt collection | Improper contact or sharing of info | This loan collateral collection agency, has made multiple calls to my phone per hour, and has egregiously called members of my family, who bear no rights or responsibility to my private financial matters.
+2422108 | Debt collection | Communication tactics | The collector callled me daily for several days even though I told him each that at the moment the options they are offering would not work.
+2842135 | Debt collection | Communication tactics | This collection agency calls almost daily and I have told them they have the wrong number and we don't know the person they are calling for, but they keep calling back and hanging up when the machine answers or just before it does.
+2120899 | Debt collection | Communication tactics | The debt collector is repeatedly calling my father's cell # that I listed above.
+2185257 | Debt collection | Taking/threatening an illegal action | Debt collector going by the name of XXXX XXXX XXXX XXXX, keeps calling my family members and leaving threatening voicemails.
+4543580 | Debt collection | Communication tactics | I have a debt collector who keeps calling me-Sometimes 2-3x a day- I called them back to find out what they needed- They are looking for my brother XXXX- I have told them, He does not live here, I have not seen or talked to him in a long time, and to stop calling me or I am seeking legal advice- I have told them that twice- They proceeded to call again, leaving voicemails, I still have some of them.
+2112551 | Debt collection | Disclosure verification of debt | I just find out that one of my account was put in collection without my knowledge or notification.
+3904728 | Debt collection | Threatened to contact someone or share information improperly | COLLECTOR KEEPS CALLING ME ON MY CELL ( XXXX ) XXXX OR ( XXXX ) XXXX SKIP TRACING FOR MY MOTHER XXXX XXXX FOR A DEBT.
+
+SQL:
+```sql
+SELECT
+    count(DISTINCT t1.complaint_id)
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw` AS t1
+  WHERE (t1.product = 'Debt collection'
+    AND (
+      t1.issue = 'Improper contact or sharing of info' OR
+      t1.issue = 'Communication tactics' OR
+      t1.issue = 'Threatened to contact someone or share information improperly'
+    )
+    AND (
+      lower(t1.narrative) LIKE '%family members%' OR
+      lower(t1.narrative) LIKE '%calling my family%' OR
+      lower(t1.narrative) LIKE '%called members of my family%' OR
+      lower(t1.narrative) LIKE '%relative phones%' OR
+      lower(t1.narrative) LIKE '%mother%' OR
+      lower(t1.narrative) LIKE '%father%' OR
+      lower(t1.narrative) LIKE '%brother%'
+    )
+  )
+LIMIT 100
+```
+There are 101 complaints where debt collectors were reported to be calling family members.
+
+Question: Collector keeps calling my family members and refuses to stop","There are 101 complaints where debt collectors were reported for calling family members.
+
+Consumers reported that debt collectors made multiple calls per hour to family members (1478636), repeatedly called fathers (2120899) or mothers (3904728), or called for brothers even after being told the person did not live there (4543580). Some collectors called family members and left threatening voicemails to scare the consumer into calling them (2185257).","1478636 | Debt collection | Improper contact or sharing of info | This loan collateral collection agency, has made multiple calls to my phone per hour, and has egregiously called members of my family, who bear no rights or responsibility to my private financial matters.
+2422108 | Debt collection | Communication tactics | The collector callled me daily for several days even though I told him each that at the moment the options they are offering would not work.
+2842135 | Debt collection | Communication tactics | This collection agency calls almost daily and I have told them they have the wrong number and we don't know the person they are calling for, but they keep calling back and hanging up when the machine answers or just before it does.
+2120899 | Debt collection | Communication tactics | The debt collector is repeatedly calling my father's cell # that I listed above.
+2185257 | Debt collection | Taking/threatening an illegal action | Debt collector going by the name of XXXX XXXX XXXX XXXX, keeps calling my family members and leaving threatening voicemails.
+4543580 | Debt collection | Communication tactics | I have a debt collector who keeps calling me-Sometimes 2-3x a day- I called them back to find out what they needed- They are looking for my brother XXXX- I have told them, He does not live here, I have not seen or talked to him in a long time, and to stop calling me or I am seeking legal advice- I have told them that twice- They proceeded to call again, leaving voicemails, I still have some of them.
+2112551 | Debt collection | Disclosure verification of debt | I just find out that one of my account was put in collection without my knowledge or notification.
+3904728 | Debt collection | Threatened to contact someone or share information improperly | COLLECTOR KEEPS CALLING ME ON MY CELL ( XXXX ) XXXX OR ( XXXX ) XXXX SKIP TRACING FOR MY MOTHER XXXX XXXX FOR A DEBT.
+
+SQL:
+```sql
+SELECT
+    count(DISTINCT t1.complaint_id)
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw` AS t1
+  WHERE (t1.product = 'Debt collection'
+    AND (
+      t1.issue = 'Improper contact or sharing of info' OR
+      t1.issue = 'Communication tactics' OR
+      t1.issue = 'Threatened to contact someone or share information improperly'
+    )
+    AND (
+      lower(t1.narrative) LIKE '%family members%' OR
+      lower(t1.narrative) LIKE '%calling my family%' OR
+      lower(t1.narrative) LIKE '%called members of my family%' OR
+      lower(t1.narrative) LIKE '%relative phones%' OR
+      lower(t1.narrative) LIKE '%mother%' OR
+      lower(t1.narrative) LIKE '%father%' OR
+      lower(t1.narrative) LIKE '%brother%'
+    )
+  )
+LIMIT 100
+```
+There are 101 complaints where debt collectors were reported to be calling family members.","The response contains an ungrounded inference, stating the purpose of threatening voicemails for complaint ID 2185257 as 'to scare the consumer into calling them,' which is not explicitly mentioned in the provided narrative. Additionally, for complaint ID 1478636, the response incorrectly links 'multiple calls per hour' directly to 'family members,' whereas the narrative states 'multiple calls to my phone per hour, and has egregiously called members of my family,' implying these were separate actions or frequencies.",0.0
+"Evidence:
+1496122 | Mortgage | Loan servicing, payments, escrow account | Was charged a late fee of nearly {$40.00} on two occasions erroneously.
+3664617 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have been having the biggest issue with XXXX XXXX.
+3664612 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have been having the biggest issue with XXXX XXXX.
+3130587 | Mortgage | Trouble during payment process | I've had nothing but problems since this company took over my XXXX mortgage only a few months ago.
+4297958 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I was notified by my mortgage company that they did not receive payment for my loan.
+2306416 | Mortgage | Loan servicing, payments, escrow account | We just purchased a home, and promptly paid our first mortgage payment according to the loan payment statement I received in the mail shortly after we closed on our home.
+5999375 | Mortgage | Trouble during payment process | The Money XXXX is my mortgage servicer. My bank, XXXX sends the payment every month by check.
+2477342 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I got a mortgage through XXXX.
+
+SQL:
+```sql
+SELECT
+    COUNT(DISTINCT complaint_id) AS num_complaints
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    product = 'Mortgage'
+    AND (issue = 'Trouble during payment process' OR issue = 'Loan servicing, payments, escrow account')
+    AND (LOWER(narrative) LIKE '%late fee%' OR LOWER(narrative) LIKE '%late fees%')
+  LIMIT 100
+```
+There are 213 complaints in the database related to mortgage servicers losing payments and charging late fees.
+
+Question: My mortgage servicer lost my payment and charged me late fees","Many consumers have reported issues with mortgage servicers losing payments and subsequently charging late fees.
+
+For example:
+*   Complaint **1496122** describes being charged a late fee erroneously on two occasions despite timely payment.
+*   Complaint **5999375** details a mortgage servicer claiming not to have received a mailed check and potentially collecting late fees due to delays.
+*   Complaint **2306416** mentions a mortgage company cashing a check but then sending a statement showing an overdue payment.
+
+There are 213 complaints in the database related to mortgage servicers losing payments and charging late fees.","1496122 | Mortgage | Loan servicing, payments, escrow account | Was charged a late fee of nearly {$40.00} on two occasions erroneously.
+3664617 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have been having the biggest issue with XXXX XXXX.
+3664612 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I have been having the biggest issue with XXXX XXXX.
+3130587 | Mortgage | Trouble during payment process | I've had nothing but problems since this company took over my XXXX mortgage only a few months ago.
+4297958 | Credit reporting, credit repair services, or other personal consumer reports | Problem with a credit reporting company's investigation into an existing problem | I was notified by my mortgage company that they did not receive payment for my loan.
+2306416 | Mortgage | Loan servicing, payments, escrow account | We just purchased a home, and promptly paid our first mortgage payment according to the loan payment statement I received in the mail shortly after we closed on our home.
+5999375 | Mortgage | Trouble during payment process | The Money XXXX is my mortgage servicer. My bank, XXXX sends the payment every month by check.
+2477342 | Credit reporting, credit repair services, or other personal consumer reports | Incorrect information on your report | I got a mortgage through XXXX.
+
+SQL:
+```sql
+SELECT
+    COUNT(DISTINCT complaint_id) AS num_complaints
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    product = 'Mortgage'
+    AND (issue = 'Trouble during payment process' OR issue = 'Loan servicing, payments, escrow account')
+    AND (LOWER(narrative) LIKE '%late fee%' OR LOWER(narrative) LIKE '%late fees%')
+  LIMIT 100
+```
+There are 213 complaints in the database related to mortgage servicers losing payments and charging late fees.","The response includes information not present in the user prompt. Specifically, the descriptions for Complaint 5999375 and Complaint 2306416 are not fully grounded in the provided narratives. For 5999375, the prompt only states that the bank sends payment by check, it does not mention the servicer claiming not to have received it or collecting late fees. For 2306416, the prompt only states the payment was made promptly according to the statement, it does not mention a check being cashed and then an overdue statement sent.",0.0
+"Evidence:
+3520588 | Mortgage | Trouble during payment process | Mortgage payment increased due to escrow shortage for the 3rd year in a row.
+1844972 | Mortgage | Loan servicing, payments, escrow account | Mortgage company increased monthly payments due to an escrow shortage and did not revert after the shortage was covered.
+2653834 | Mortgage | Trouble during payment process | Monthly mortgage payment increased significantly due to an escrow deficiency.
+2856520 | Mortgage | Struggling to pay mortgage | Escrow shortage led to a significant increase in monthly mortgage payment due to increased taxes and insurance.
+3114049 | Mortgage | Trouble during payment process | Mortgage company informed of a large escrow shortage, drastically increasing monthly mortgage payment with little notice.
+6480749 | Mortgage | Trouble during payment process | Monthly mortgage payment has been increasing every year due to adjustments in the escrow account.
+3336616 | Mortgage | Struggling to pay mortgage | Loan servicing company increased monthly mortgage payment due to an escrow shortfall, causing financial burden.
+2162054 | Mortgage | Loan servicing, payments, escrow account | Mortgage company incorrectly applied an extra payment towards escrow instead of the mortgage.
+
+```sql
+SELECT
+    count(complaint_id)
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    LOWER(product) = 'mortgage' AND
+    (
+        LOWER(narrative) LIKE '%escrow shortage%' OR
+        LOWER(narrative) LIKE '%escrow deficiency%' OR
+        LOWER(narrative) LIKE '%escrow shortfall%'
+    ) AND
+    (
+        LOWER(narrative) LIKE '%payment increased%' OR
+        LOWER(narrative) LIKE '%payment jump%' OR
+        LOWER(narrative) LIKE '%payment increase%'
+    )
+  LIMIT 10
+```
+There are 4 complaints where the product is mortgage and the narrative mentions an escrow shortage, deficiency, or shortfall and also mentions that the payment increased or jumped.
+
+Question: My escrow account shortage made my monthly mortgage payment jump","We understand your concern about your mortgage payment increasing due to an escrow account shortage.
+
+Similar complaints indicate that this is a recurring issue for mortgage holders. For example, some consumers reported their mortgage payment increased due to an escrow shortage for the 3rd year in a row (Complaint ID 3520588), or that monthly payments significantly increased due to an escrow deficiency (Complaint IDs 2653834, 3114049, 3336616). One complaint noted the increase was due to increased taxes and insurance (Complaint ID 2856520). Another complaint mentioned the company did not revert payments after the shortage was covered (Complaint ID 1844972).
+
+Our analysis shows there are 4 complaints where the product is mortgage, and the narrative mentions an escrow shortage, deficiency, or shortfall, and also that the payment increased or jumped.","3520588 | Mortgage | Trouble during payment process | Mortgage payment increased due to escrow shortage for the 3rd year in a row.
+1844972 | Mortgage | Loan servicing, payments, escrow account | Mortgage company increased monthly payments due to an escrow shortage and did not revert after the shortage was covered.
+2653834 | Mortgage | Trouble during payment process | Monthly mortgage payment increased significantly due to an escrow deficiency.
+2856520 | Mortgage | Struggling to pay mortgage | Escrow shortage led to a significant increase in monthly mortgage payment due to increased taxes and insurance.
+3114049 | Mortgage | Trouble during payment process | Mortgage company informed of a large escrow shortage, drastically increasing monthly mortgage payment with little notice.
+6480749 | Mortgage | Trouble during payment process | Monthly mortgage payment has been increasing every year due to adjustments in the escrow account.
+3336616 | Mortgage | Struggling to pay mortgage | Loan servicing company increased monthly mortgage payment due to an escrow shortfall, causing financial burden.
+2162054 | Mortgage | Loan servicing, payments, escrow account | Mortgage company incorrectly applied an extra payment towards escrow instead of the mortgage.
+
+```sql
+SELECT
+    count(complaint_id)
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    LOWER(product) = 'mortgage' AND
+    (
+        LOWER(narrative) LIKE '%escrow shortage%' OR
+        LOWER(narrative) LIKE '%escrow deficiency%' OR
+        LOWER(narrative) LIKE '%escrow shortfall%'
+    ) AND
+    (
+        LOWER(narrative) LIKE '%payment increased%' OR
+        LOWER(narrative) LIKE '%payment jump%' OR
+        LOWER(narrative) LIKE '%payment increase%'
+    )
+  LIMIT 10
+```
+There are 4 complaints where the product is mortgage and the narrative mentions an escrow shortage, deficiency, or shortfall and also mentions that the payment increased or jumped.","All information in the response, including specific complaint details and the complaint count, is directly derived from the user prompt's evidence and the provided summary statement after the SQL query.",1.0
+"Evidence:
+2117536 | Mortgage | Loan modification,collection,foreclosure | I was denied a modification on my loan twice.
+1307639 | Mortgage | Loan modification,collection,foreclosure | I have been denied a Modification due to the Servicing Company 's admitted error and slow processing time.
+2925963 | Mortgage | Mortgage | I have been trying to get a modification for my home mortgage.
+1954304 | Mortgage | Loan modification,collection,foreclosure | I have been trying to complete a loan modification with my lender for 2 years and am continually lied too.
+2186417 | Mortgage | Loan modification,collection,foreclosure | I am trying to work with my bank to modify the loan.
+1786833 | Mortgage | Loan modification,collection,foreclosure | After submitting all required and requested documents in support of a loan modification, servicer has sent a letter saying application is incomplete and they will not be reviewing the application for modification.
+4098245 | Mortgage | Struggling to pay mortgage | I was denied for a loan modification by SLS and was not provided a reason why I was not a candidate.
+3790146 | Mortgage | Struggling to pay mortgage | I applied for a loan modification and was denied.
+
+No quantitative analysis needed.
+
+Question: I was denied a loan modification on my home loan without a clear reason","Many consumers have reported being denied loan modifications for their home loans. Some complaints describe being denied twice (Complaint 2117536), while others report denials due to alleged incomplete applications (Complaint 1786833) or servicing company errors (Complaint 1307639).
+
+Specifically, one consumer (Complaint 4098245) stated they were denied a loan modification and ""was not provided a reason why I was not a candidate.""","2117536 | Mortgage | Loan modification,collection,foreclosure | I was denied a modification on my loan twice.
+1307639 | Mortgage | Loan modification,collection,foreclosure | I have been denied a Modification due to the Servicing Company 's admitted error and slow processing time.
+2925963 | Mortgage | Mortgage | I have been trying to get a modification for my home mortgage.
+1954304 | Mortgage | Loan modification,collection,foreclosure | I have been trying to complete a loan modification with my lender for 2 years and am continually lied too.
+2186417 | Mortgage | Loan modification,collection,foreclosure | I am trying to work with my bank to modify the loan.
+1786833 | Mortgage | Loan modification,collection,foreclosure | After submitting all required and requested documents in support of a loan modification, servicer has sent a letter saying application is incomplete and they will not be reviewing the application for modification.
+4098245 | Mortgage | Struggling to pay mortgage | I was denied for a loan modification by SLS and was not provided a reason why I was not a candidate.
+3790146 | Mortgage | Struggling to pay mortgage | I applied for a loan modification and was denied.
+
+No quantitative analysis needed.","All information in the response, including specific examples and complaint numbers, is directly sourced from the 'Evidence' provided in the user prompt, making it fully grounded.",1.0
+"Evidence:
+1307639 | Mortgage | Loan modification,collection,foreclosure | I have been denied a Modification due to the Servicing Company 's admitted error and slow processing time.
+2961374 | Mortgage | Struggling to pay mortgage | I have submitted a mortgage modification application on XX/XX/2018 but have been denied.
+5640529 | Mortgage | Struggling to pay mortgage | I have a current modification process pending and now said is incomplete which is incorrect I have sent all information requested.
+1322816 | Mortgage | Loan modification,collection,foreclosure | The lender failed to give me a modification when I am eligible for XXXX.
+2704709 | Mortgage | Struggling to pay mortgage | Carrington Mortgage was processing my modification request and moved forward with foreclosing on my property XXXX XXXX XXXX XXXX TN XXXX and they foreclosed onXX/XX/XXXX
+5981161 | Mortgage | Struggling to pay mortgage | XXXX sent letter to borrower saying he was approved for a modification but did not provide any documents stating when he was to resume payment or what the payments will be.
+3555458 | Mortgage | Trouble during payment process | Mortgagee said there had been a stop payment issued, and said my Mortgage Modification Plan was in default and therefore denied.
+3168456 | Mortgage | Struggling to pay mortgage | We submitted a loan modification packet in XX/XX/XXXX.
+
+SQL:
+```sql
+SELECT
+    count(complaint_id)
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    LOWER(product) = 'mortgage' AND
+    (
+      LOWER(narrative) LIKE '%foreclos%' AND
+      LOWER(narrative) LIKE '%modification%' AND
+      (
+        LOWER(narrative) LIKE '%pending%' OR
+        LOWER(narrative) LIKE '%processing%'
+      )
+    )
+  LIMIT 100;
+```
+There are 36 complaints where foreclosure proceeded while a modification application was pending or processing.
+
+Question: Foreclosure proceeded while my modification application was still pending","There are 36 complaints where foreclosure proceeded while a mortgage modification application was pending or processing.
+
+Similar complaints describe scenarios such as:
+*   Mortgage servicers denying modifications due to their own errors or slow processing (1307639).
+*   Applications being denied, with the servicer then moving to sell the house (2961374).
+*   Lenders proceeding with foreclosure while a modification request was actively being processed (2704709).
+*   Borrowers being told a modification process was pending but then being informed it was incomplete, leading to foreclosure attempts (5640529).
+*   Approved modifications not being followed up with necessary documentation, resulting in default and foreclosure notices (5981161).
+*   Modification plans being denied due to incorrect reasons, such as an alleged stop payment, leading to foreclosure (3555458).","1307639 | Mortgage | Loan modification,collection,foreclosure | I have been denied a Modification due to the Servicing Company 's admitted error and slow processing time.
+2961374 | Mortgage | Struggling to pay mortgage | I have submitted a mortgage modification application on XX/XX/2018 but have been denied.
+5640529 | Mortgage | Struggling to pay mortgage | I have a current modification process pending and now said is incomplete which is incorrect I have sent all information requested.
+1322816 | Mortgage | Loan modification,collection,foreclosure | The lender failed to give me a modification when I am eligible for XXXX.
+2704709 | Mortgage | Struggling to pay mortgage | Carrington Mortgage was processing my modification request and moved forward with foreclosing on my property XXXX XXXX XXXX XXXX TN XXXX and they foreclosed onXX/XX/XXXX
+5981161 | Mortgage | Struggling to pay mortgage | XXXX sent letter to borrower saying he was approved for a modification but did not provide any documents stating when he was to resume payment or what the payments will be.
+3555458 | Mortgage | Trouble during payment process | Mortgagee said there had been a stop payment issued, and said my Mortgage Modification Plan was in default and therefore denied.
+3168456 | Mortgage | Struggling to pay mortgage | We submitted a loan modification packet in XX/XX/XXXX.
+
+SQL:
+```sql
+SELECT
+    count(complaint_id)
+  FROM
+    `vertex-agent-platform-510904.complaints.complaints_raw`
+  WHERE
+    LOWER(product) = 'mortgage' AND
+    (
+      LOWER(narrative) LIKE '%foreclos%' AND
+      LOWER(narrative) LIKE '%modification%' AND
+      (
+        LOWER(narrative) LIKE '%pending%' OR
+        LOWER(narrative) LIKE '%processing%'
+      )
+    )
+  LIMIT 100;
+```
+There are 36 complaints where foreclosure proceeded while a modification application was pending or processing.","The response includes information not explicitly present in the user prompt. Specifically, for complaint ID 2961374, it adds 'with the servicer then moving to sell the house'. For 5640529, it adds 'leading to foreclosure attempts'. For 5981161, it adds 'resulting in default and foreclosure notices'. For 3555458, it adds 'leading to foreclosure'. These details are inferences or elaborations not found in the original complaint narratives provided.",0.0
