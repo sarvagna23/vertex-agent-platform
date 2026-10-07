@@ -92,7 +92,7 @@ Measured on 50,000 CFPB complaints with narratives, using the scripts in `eval/`
 | Judge answer quality | 3.67 / 5 | same run |
 | Judge fluency | 5.0 / 5 | same run |
 | PII leak rate in answers | 0 of 15 | redactor run over every answer |
-| End to end latency p50 / p95 | TBD | measured after the Cloud Run deploy |
+| End to end latency p50 / p95 | 15.1 s / 24.7 s | deployed Cloud Run service, 20 sequential requests, 0 failures; measured inside the service (excludes network); p95 is the slowest of 20 |
 ## Design notes and limits
 
 - **Read-only SQL is layered.** The server rejects anything but a single SELECT or WITH, caps rows, and caps bytes billed per query. The real boundary is IAM: the service account only has dataset read access.

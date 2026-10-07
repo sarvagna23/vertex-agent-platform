@@ -1,0 +1,7 @@
+{
+  "requests": 20,
+  "failures": 0,
+  "latency_ms_p50": 15118,
+  "latency_ms_p95": 24739,
+  "note": "latency_ms is measured inside the service (agent workflow only, no network)"
+}
